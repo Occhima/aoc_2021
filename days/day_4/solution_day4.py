@@ -1,5 +1,5 @@
-from __future__ import annotations
 import click, aocd
+from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Final
 
@@ -14,6 +14,8 @@ ROWS: Final[list[slice]] = [
 COLS: Final[list[slice]] = [
     slice(col, CARD_SIZE * CARD_SIZE, CARD_SIZE) for col in range(CARD_SIZE)
 ]
+
+# solve the advent of code 2021 day 5
 
 
 @dataclass
