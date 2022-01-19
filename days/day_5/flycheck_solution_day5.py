@@ -76,18 +76,20 @@ class Line:
         else:
             # lines overlap along a segment
             xs = range(ostart.x, min(send.x, oend.x) + 1) if sdx else repeat(ostart.x)
-            match sdy:
-                case 0:
-                    ys = repeat(ostart.y)
-                case _ if sdy < 0:
-                    ys = range(ostart.y, max(send.y, oend.y) - 1, -1)
-                case _:  # > 0
-                    ys = range(ostart.y, min(send.y, oend.y) + 1)
+            # match sdy:
+            #     case 0:
+            #         ys = repeat(ostart.y)
+            #     case _ if sdy < 0:
+            #         ys = range(ostart.y, max(send.y, oend.y) - 1, -1)
+            #     case _:  # > 0
+            #         ys = range(ostart.y, min(send.y, oend.y) + 1)
+            # match sdy:
+            ys = repeat(ostart.y)
 
-            # if sdy < 0:
-            #     ys = range(ostart.y, max(send.y, oend.y) - 1, -1)
-            # else:  # > 0
-            #     ys = range(ostart.y, min(send.y, oend.y) + 1)
+            if sdy < 0:
+                ys = range(ostart.y, max(send.y, oend.y) - 1, -1)
+            else:  # > 0
+                ys = range(ostart.y, min(send.y, oend.y) + 1)
             yield from (Point(x, y) for x, y in zip(xs, ys))
 
 
